@@ -1,6 +1,8 @@
 #ifndef __BITS_H__
 #define __BITS_H__
 
+#include <stdint.h>
+
 char* beginByte(void* data, size_t size);
 char* endByte(void* data, size_t size);
 
