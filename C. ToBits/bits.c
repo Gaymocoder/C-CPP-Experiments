@@ -1,6 +1,9 @@
 #include "bits.h"
 #include "endianness.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 char* beginByte(void* data, size_t size)
 {
     if (BIG_ENDIAN)
@@ -17,7 +20,7 @@ char* endByte(void* data, size_t size)
 
 void charToBits(char value, char* str)
 {
-    for(uint8_t = 0; i < 8; ++i)
+    for(uint8_t i = 0; i < 8; ++i)
     {
         if (value & (1 << (8 - i - 1)))
             str[i + i/8] = '1';
@@ -30,10 +33,18 @@ void toBits(void* data, size_t size, char* str)
 {
     char* valueByte = beginByte(data, size);
     char* endingByte = endByte(data, size);
-    for(size_t i = 0; valueByte != endingByte; valueByte += BIGENDIAN ? 1 : -1)
+    for(size_t i = 0; valueByte != endingByte; valueByte += BIG_ENDIAN ? 1 : -1)
     {
         charToBits(*valueByte, str);
         str[++i * 9 - 1] = ' ';
     }
     str[size*9 -1] = 0;
+}
+
+void printBits(void* data, size_t size)
+{
+    char* bits = (char*) malloc(size * 9);
+    toBits(data, size, bits);
+    printf("%s\n", bits);
+    free(bits);
 }
