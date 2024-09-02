@@ -1,6 +1,10 @@
+#include "bits.h"
+#include "endianness.h"
+
 #include <stdio.h>
 
 int main()
 {
-    printf("There will be code some time\n");
+    uint64_t n = 1023;
+    printBits(&n, sizeof(n));
 }

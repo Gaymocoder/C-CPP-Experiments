@@ -35,7 +35,7 @@ void toBits(void* data, size_t size, char* str)
     char* endingByte = endByte(data, size);
     for(size_t i = 0; valueByte != endingByte; valueByte += BIG_ENDIAN ? 1 : -1)
     {
-        charToBits(*valueByte, str);
+        charToBits(*valueByte, str + i*9);
         str[++i * 9 - 1] = ' ';
     }
     str[size*9 -1] = 0;
