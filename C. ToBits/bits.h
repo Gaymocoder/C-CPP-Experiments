@@ -12,10 +12,12 @@ char* endByte(void* data, size_t size);
 All bytes of data will be interpreted to bits one by one, so:
     charToBits — transforms single byte to bits (bits are put into "str"-variable);
     toBits — transforms all bytes of data to bits one by one with "charToBits"-function (bits are put into "str"-variable);
-    printBits — prints out bits of data got with "toBits"-function;*/
+    printBits — prints out bits of data got with "toBits"-function;
+    printArrayBits — "printBits" for arrays, not for single values*/
     
 void charToBits(char value, char* str);
 void toBits(void* data, size_t size, char* str);
 void printBits(void* data, size_t size);
+void printArrayBits(void* arr, size_t typeSize, size_t arrSize);
 
 #endif

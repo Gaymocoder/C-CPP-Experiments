@@ -21,9 +21,14 @@ int main()
     printf("\n");
 
     // If you copy this output to binary-code-translator, you will see "!dlrow olleH".
-    // The function printBits works properly only for variables of integrated data types. No arrays, no structs
-    printf("The bits of \"Hello world!\"-value as char* var:\n");
+    // The function printBits works properly only for variables of integrated data types. No arrays, no structures
+    printf("The bits of \"Hello world!\"-value as char* var (by \"printBits\"-func):\n");
     printBits(cstr, strlen(cstr));
+    printf("\n");
+
+    // The function printArrayBits works properly for arrays, but not for structures
+    printf("The bits of \"Hello world!\"-value as char* var (by \"printArrayBits\"-func:\n");
+    printArrayBits(cstr, sizeof(char), strlen(cstr));
     printf("\n");
 
     printf("The bits of \"true\"-value as bool var:\n");

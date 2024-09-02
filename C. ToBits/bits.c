@@ -38,13 +38,26 @@ void toBits(void* data, size_t size, char* str)
         charToBits(*valueByte, str + i*9);
         str[++i * 9 - 1] = ' ';
     }
-    str[size*9 -1] = 0;
 }
 
 void printBits(void* data, size_t size)
 {
     char* bits = (char*) malloc(size * 9);
     toBits(data, size, bits);
+    bits[size * 9 - 1] = 0;
+    printf("%s\n", bits);
+    free(bits);
+}
+
+void printArrayBits(void* arr, size_t typeSize, size_t arrSize)
+{
+    char* bits = (char*) malloc(arrSize * typeSize * 9);
+    for(size_t i = 0; i < arrSize; ++i)
+    {
+        char* it = (char*) arr + i * typeSize;
+        toBits(it, typeSize, bits + i * typeSize * 9);
+    }
+    bits[arrSize * typeSize * 9 - 1] = 0;
     printf("%s\n", bits);
     free(bits);
 }
