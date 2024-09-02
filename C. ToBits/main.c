@@ -20,6 +20,8 @@ int main()
     printBits(&int64, sizeof(uint64_t));
     printf("\n");
 
+    // If you copy this output to binary-code-translator, you will see "!dlrow olleH".
+    // The function printBits works properly only for variables of integrated data types. No arrays, no structs
     printf("The bits of \"Hello world!\"-value as char* var:\n");
     printBits(cstr, strlen(cstr));
     printf("\n");
