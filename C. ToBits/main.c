@@ -6,6 +6,8 @@
 
 int main()
 {
+    configureEndianness();
+    
     uint64_t int64 = 1023;
     char* cstr = "Hello world!";
     bool boolean = true;
