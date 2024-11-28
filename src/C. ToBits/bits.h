@@ -2,6 +2,7 @@
 #define __BITS_H__
 
 #include <stdint.h>
+#include <stddef.h>
 
 // Due to existing such thing as endianness, there are to options: either first byte of data is also the first in RAM
 // or, otherwise, it is the last one in RAM. So these function are supposed to find, where are located actual first and last bytes of data

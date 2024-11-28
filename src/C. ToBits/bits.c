@@ -49,15 +49,15 @@ void printBits(void* data, size_t size)
     free(bits);
 }
 
-void printArrayBits(void* arr, size_t typeSize, size_t arrSize)
+void printArrayBits(void* arr, size_t typeSize, size_t arrLength)
 {
-    char* bits = (char*) malloc(arrSize * typeSize * 9);
-    for(size_t i = 0; i < arrSize; ++i)
+    char* bits = (char*) malloc(arrLength * typeSize * 9);
+    for(size_t i = 0; i < arrLength; ++i)
     {
         char* it = (char*) arr + i * typeSize;
         toBits(it, typeSize, bits + i * typeSize * 9);
     }
-    bits[arrSize * typeSize * 9 - 1] = 0;
+    bits[arrLength * typeSize * 9 - 1] = 0;
     printf("%s\n", bits);
     free(bits);
 }
