@@ -8,3 +8,6 @@
 # Ignore bin and build directories
 bin/
 build/
+
+# Ignore unprocessed, old sources
+unprocessed_src/
