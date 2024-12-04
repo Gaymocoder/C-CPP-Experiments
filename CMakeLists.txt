@@ -3,3 +3,4 @@ project(C_CPP_Exps)
 
 add_subdirectory("src/C. 0-byte in string")
 add_subdirectory("src/C. ToBits")
+add_subdirectory("src/C. Anagram (UTF-16)")
