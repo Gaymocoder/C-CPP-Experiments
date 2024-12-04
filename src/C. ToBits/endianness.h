@@ -8,8 +8,8 @@
 #include <stdbool.h>
 
 // Macroses which are created to indicate if endiannes is big or small (depending on "bigEndian"-variable)
-#define BIG_ENDIAN bigEndian
-#define LITTLE_ENDIAN !bigEndian
+#define GCS_BIG_ENDIAN bigEndian
+#define GCS_LITTLE_ENDIAN !bigEndian
 
 // The global bool variable which is configured with start of the program
 // It indicates if the endianness is big (true) or small (false)

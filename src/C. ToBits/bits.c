@@ -1,19 +1,19 @@
-#include "bits.h"
 #include "endianness.h"
+#include "bits.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
 char* beginByte(void* data, size_t size)
 {
-    if (BIG_ENDIAN)
+    if (GCS_BIG_ENDIAN)
         return (char*) data;
     return (char*) data + size - 1;
 }
 
 char* endByte(void* data, size_t size)
 {
-    if (LITTLE_ENDIAN)
+    if (GCS_LITTLE_ENDIAN)
         return (char*) data - 1;
     return (char*) data + size;
 }
@@ -33,7 +33,8 @@ void toBits(void* data, size_t size, char* str)
 {
     char* valueByte = beginByte(data, size);
     char* endingByte = endByte(data, size);
-    for(size_t i = 0; valueByte != endingByte; valueByte += BIG_ENDIAN ? 1 : -1)
+    
+    for(size_t i = 0; valueByte != endingByte; valueByte += GCS_BIG_ENDIAN ? 1 : -1)
     {
         charToBits(*valueByte, str + i*9);
         str[++i * 9 - 1] = ' ';
@@ -42,7 +43,7 @@ void toBits(void* data, size_t size, char* str)
 
 void printBits(void* data, size_t size)
 {
-    char* bits = (char*) malloc(size * 9);
+    char* bits = (char*) malloc (size * 9);
     toBits(data, size, bits);
     bits[size * 9 - 1] = 0;
     printf("%s\n", bits);
