@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.28)
 project(C_ToBits)
 
 set(CMAKE_CXX_STANDART 17)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)
 
 set(ENDIANNESS_LIB endianness.c)
 set(BITS_LIB bits.c)
