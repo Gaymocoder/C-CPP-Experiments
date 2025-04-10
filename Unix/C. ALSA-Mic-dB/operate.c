@@ -11,7 +11,7 @@ int main(int argc, char** argv)
 {
     if (argc < 6 || (argc == 2 && strcmp(argv[1], "--help")))
     {
-        fprintf(stderr, "Usage: ./set <system_device_name> <simple_mixer_id> <simple_mixer_name> <capture/playback> <dB_x100>\n");
+        fprintf(stderr, "Usage: ./<exe_name> <system_device_name> <simple_mixer_id> <simple_mixer_name> <capture/playback> <dB_x100>\n");
         return 1;
     }
     
