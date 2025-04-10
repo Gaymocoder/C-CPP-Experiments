@@ -67,7 +67,7 @@ int main(int argc, char** argv)
         dB_x100 = strtol(argv[5], NULL, 10);
         if (errno != 0 || dB_x100 < min_dB_x100 || dB_x100 > max_dB_x100)
         {
-            fprintf(stderr, "Failed to set capture volume: wrong dB range (should be integer value from %.2f to %.2f)\n", (double) min_dB_x100 / 100.0, (double) max_dB_x100 / 100.0);
+            fprintf(stderr, "Failed to set capture volume: out of dB_x100 range (should be integer value from %li to %li)\n", min_dB_x100, max_dB_x100);
             return 9;
         }
         
@@ -80,6 +80,41 @@ int main(int argc, char** argv)
         if (snd_mixer_selem_set_capture_dB(elem, 0, dB_x100, 0))
         {
             fprintf(stderr, "Failed to set capture dB\n");
+            return 11;
+        }
+    }
+    else if (!strcmp(argv[4], "playback"))
+    {
+        if (!snd_mixer_selem_has_playback_volume(elem))
+        {
+            fprintf(stderr, "Failed to set the volume: specified device doesn't have playback volume\n");
+            return 6;
+        }
+        
+        long min_dB_x100 = 0, max_dB_x100 = 0;
+        if (snd_mixer_selem_get_playback_dB_range(elem, &min_dB_x100, &max_dB_x100))
+        {
+            fprintf(stderr, "Failed to get playback volume ranges\n");
+            return 8;
+        }
+        
+        errno = 0;
+        dB_x100 = strtol(argv[5], NULL, 10);
+        if (errno != 0 || dB_x100 < min_dB_x100 || dB_x100 > max_dB_x100)
+        {
+            fprintf(stderr, "Failed to set playback volume: out of dB_x100 range (should be integer value from %li to %li)\n", min_dB_x100, max_dB_x100);
+            return 9;
+        }
+        
+        if (snd_mixer_selem_get_playback_dB(elem, 0, &old_dB_x100))
+        {
+            fprintf(stderr, "Failed to get current playback volume\n");
+            return 10;
+        }
+        
+        if (snd_mixer_selem_set_playback_dB(elem, 0, dB_x100, 0))
+        {
+            fprintf(stderr, "Failed to set playback dB\n");
             return 11;
         }
     }
